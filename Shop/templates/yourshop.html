@@ -1,0 +1,272 @@
+
+{% extends 'sbase.html' %}
+{% load static %}
+{% block body %}
+
+
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+
+            <h2>SHOP NAME</h2>
+
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Your Shop</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+    <section class="about-us-area">
+
+        <div class="container">
+
+            <div class="row justify-content-between">
+
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+
+                    
+
+                    <!-- Progress Bar Content Area -->
+                    <div class="green-progress-bar mb-50">
+                           <div class="section-heading">
+                               {% for i in shop_data %}
+                               {% if i.usr == request.user %}
+                               <h2>{{ i.Shopname }}</h2>
+                               <p>By: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+                               <p>Manager Phone number: {{ i.Phone }}</p>
+                               {% endif %}
+                               {% endfor %}
+
+
+
+
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="green-benefits-area">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <a href="{% url 'SOrder' %}"<button type="submit" class="btn green-btn mt-15">Order Dasboard</button></a>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="border-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Area End ##### -->
+
+        <!-- ##### Cool Facts Area Start ##### -->
+    <section class="cool-facts-area bg-img section-padding-100-0" style="background-image: url(img/bg-img/cool-facts.png);">
+        <div class="container">
+            <div class="row">
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-cool-fact d-flex align-items-center justify-content-center mb-100">
+                        <div class="cf-icon">
+                            <img src="img/core-img/cf1.png" alt="">
+                        </div>
+                        <div class="cf-content">
+                            <h2><span class="counter">20</span></h2>
+                            <h6>AWARDS</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-cool-fact d-flex align-items-center justify-content-center mb-100">
+                        <div class="cf-icon">
+                            <img src="img/core-img/cf2.png" alt="">
+                        </div>
+                        <div class="cf-content">
+                            <h2><span class="counter">70</span></h2>
+                            <h6>PROJECTS</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-cool-fact d-flex align-items-center justify-content-center mb-100">
+                        <div class="cf-icon">
+                            <img src="img/core-img/cf3.png" alt="">
+                        </div>
+                        <div class="cf-content">
+                            <h2><span class="counter">30</span>+</h2>
+                            <h6>HAPPY CLIENTS</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-cool-fact d-flex align-items-center justify-content-center mb-100">
+                        <div class="cf-icon">
+                            <img src="img/core-img/cf4.png" alt="">
+                        </div>
+                        <div class="cf-content">
+                            <h2><span class="counter">80</span>K+</h2>
+                            <h6>REVENUE</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Side Image -->
+        <div class="side-img wow fadeInUp" data-wow-delay="500ms">
+            <img src="img/core-img/pot.png" alt="">
+        </div>
+    </section>
+    <!-- ##### Cool Facts Area End ##### -->
+    
+
+        
+    <section class="contact-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h2>UPDATE YOUR STOCK</h2>
+                        <p>UPLOAD STOCK PRESENT </p>
+                    </div>
+                    
+                    <div class="contact-form-area mb-100">
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-sm-5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-name" name="name" placeholder="NAME">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-email" name="price" placeholder="PRICE">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="quantity" placeholder="QUANTITY">
+                                    </div>
+                                </div>
+                                  
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-subject" name="type" placeholder="TYPE">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-sm-6">
+                                    PHOTO:<input type="FILE" name="pimage" placeholder="img">
+                                   
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="p_dis" placeholder="about">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn green-btn mt-15">UPLOAD</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <!-- Google Maps -->
+                    <div class=" mb-100">
+                        <img src="https://i5.walmartimages.com/asr/db76830f-ffbb-48de-8a84-8d82999cd6a5_2.f8f451a576a78b51052bf9bf01af7712.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+   
+
+    <!-- ##### Team Area Start ##### -->
+    <section class="shop-page section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>MY STOCK</h2>
+                        <p>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for p in product_data %}
+                {% if p.usr.username == request.user.username %}
+                            <!-- Single Product Area -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-area mb-50">
+                                    <!-- Product Image -->
+                                    <div class="img">
+                                        <img src="{{ p.Product_Image.url }}" alt="">
+                                        <!-- Product Tag -->
+
+                                        <div class="product-meta d-flex">
+                                            <a href="{% url 'productdelete' p.id %}" class="btn green-btn w-5 add-to-cart-btn wishlist-btn"><i class="fa fa-trash"></i></a>
+                                            <a href="{% url 'PEdit' p.id %}" class="compare-btn btn green-btn w-5 add-to-cart-btn"><i class="arrow_left-right_alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Info -->
+                                    <div class="product-info mt-15 text-center">
+                                        <a href="shop-details.html">
+                                            <p>{{ p.Product_name }}</p>
+                                        </a>
+                                        <h6>Rs. {{ p.Price }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                {% endif %}
+                {% endfor %}
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### Team Area End ##### -->
+
+{% endblock %}

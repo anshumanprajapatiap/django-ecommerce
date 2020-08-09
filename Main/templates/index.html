@@ -1,0 +1,178 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    
+    <!--main-->
+   
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+
+            
+            <div class="single-hero-post bg-overlay">
+               
+                <div class="slide-img bg-img" style="background-image: url(https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483_960_720.jpg);"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                         
+                            <div class="hero-slides-content text-center">
+                                <h2>Sell Plants</h2>
+                                <p>Is there anything Amazon doesn’t sell? But unfortunately, they ain’t really good with the quality of plants. Especially, if you order their Rolling Nature plants.
+                                <div class="welcome-btn-group">
+                                    <a href="{% url 'Login' %}" class="btn green-btn mr-30">SHOP NOW</a>
+                                    <a href="{% url 'SLogin' %}" class="btn green-btn active">SELL PRODUCTS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="single-hero-post bg-overlay">
+               
+                <div class="slide-img bg-img" style="background-image: url(https://cdn.pixabay.com/photo/2016/12/05/16/46/pine-1884335_960_720.jpg);"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                          
+                            <div class="hero-slides-content text-center">
+                                <h2>Shop Plants</h2>
+                                <p>Is there anything Amazon doesn’t sell? But unfortunately, they ain’t really good with the quality of plants. Especially, if you order their Rolling Nature plants.
+                                <div class="welcome-btn-group">
+                                    <a href="{% url 'Login' %}" class="btn green-btn mr-30">SHOP NOW</a>
+                                    <a href="{% url 'SLogin' %}" class="btn green-btn active">SELL PRODUCTS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="new-arrivals-products-area bg-gray section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>NEW ARRIVALS</h2>
+                        <p>We have the latest products, it must be exciting for you</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Single Product Area -->
+                {% for p in recent4 %}
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Product Image -->
+                        <div class="img">
+                            <a href="#"><img src="{{ p.Product_Image.url }}" alt=""></a>
+                            <!-- Product Tag -->
+                            <div class="product-tag">
+
+                            </div>
+                            <div class="product-meta d-flex">
+                                {% if request.user.is_authenticated %}
+
+
+                                    {% for c in customer_data %}
+                                    {% if request.user == c.usr %}
+                                    <a href="{% url 'add-to-cart' p.id %}" class="btn green-btn w-5 add-to-cart-btn">Add to cart</a>
+
+                                    {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                <a href="{% url 'Login' %}" class="btn green-btn w-5 add-to-cart-btn">Add to cart</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Product Info -->
+                        <div class="product-info mt-15 text-center">
+                            <a href="{% url 'PDetail' p.id %}">
+                                <p>{{ p.Product_name }}</p>
+                            </a>
+                            <h6>Rs. {{ p.Price }}</h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+                                    {% for c in customer_data %}
+                                    {% if request.user == c.usr %}
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'Shop' %}" class="btn green-btn">View All</a>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contact-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-lg-5">
+                  
+                    <div class="section-heading">
+                        <h2>GET IN TOUCH</h2>
+                        <p>Send us a message, we will call back later</p>
+                    </div>
+                   
+                    <div class="contact-form-area mb-100">
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-name" placeholder="Your Name">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="contact-email" placeholder="Your Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="contact-subject" placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn green-btn mt-15">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                
+                    <div class="map-area mb-100">
+                        <iframe src="https://maps.google.com/maps?q=rgpv&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!--mainend-->
+	{% endblock %}
+
+    

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static './img/bg-img/24.jpg' %});">
+            <h2>Checkout</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Checkout Area Start ##### -->
+ <form action="#" method="post">
+      {% csrf_token %}
+    <div class="checkout_area mb-100">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-7">
+                    <div class="checkout_details_area clearfix">
+                        <h5>Billing Details</h5>
+                       
+                            <div class="row">
+                                
+                                <div class="col-12 mb-4">
+                                    <label>Street Adress *</label>
+                                    <input name='sa' type="text" class="form-control" id="address" value="">
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="city">Apartment *</label>
+                                    <input name="apart" type="text" class="form-control" id="city" value="">
+                                </div>
+                               
+                                <div class="col-md-6 mb-4">
+                                    <label for="country">Country</label>
+                                    <select name='cunt' class="custom-select d-block w-100" id="country">
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="ger">Germany</option>
+                                        <option value="fra">France</option>
+                                        <option value="ind">India</option>
+                                        <option value="aus">Australia</option>
+                                        <option value="bra">Brazil</option>
+                                        <option value="cana">Canada</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="postcode">Postcode/Zip</label>
+                                    <input name='zip' type="text" class="form-control" id="postcode" value="">
+                                </div>
+                              
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Single Checkbox -->
+                                        <div class="custom-control custom-checkbox d-flex align-items-center mr-30">
+                                            <input  name='check' type="checkbox" class="custom-control-input" id="customCheck1">
+                                              <label class="custom-control-label" for="customCheck1">Confirm order</label>
+                                        </div>
+                                        <!-- Single Checkbox -->
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="checkout-content">
+                        <h5 class="title--">Your Order</h5>
+                        {% for order_item in object.items.all %}
+                        <div class="products">
+
+                            <div class="products-data">
+                                <h5>Products:</h5>
+                                <div class="single-products d-flex justify-content-between align-items-center">
+                                    <p>{{ order_item.item.Product_name }}</p>
+                                    <h5>Rs. {{ order_item.get_total_item_price }}</h5>
+                                </div>
+                            </div>
+
+                        </div> {% endfor %}
+                        <div class="subtotal d-flex justify-content-between align-items-center">
+                            <h5>Subtotal</h5>
+                            <h5>Rs. {{ object.get_total }}</h5>
+                        </div>
+                        <div class="shipping d-flex justify-content-between align-items-center">
+                            <h5>Shipping</h5>
+                            <h5>Rs. 0.00</h5>
+                        </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>Order Total</h5>
+                            <h5>Rs. {{ object.get_total }}</h5>
+                        </div>
+                        <div class="order-total d-flex justify-content-between align-items-center">
+                            <h5>*Pay the amount at product delevery</h5>
+                        </div>
+                        <div class="checkout-btn mt-30">
+                            <button type="submit" class="btn green-btn mt-15">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> </form>
+    <!-- ##### Checkout Area End ##### -->
+
+{% endblock %}

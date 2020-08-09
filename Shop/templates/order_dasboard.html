@@ -1,0 +1,103 @@
+{% extends 'sbase.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static './img/bg-img/24.jpg' %});">
+            <h2>Orders</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Shop</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Cart Area Start ##### -->
+    <div class="cart-area section-padding-0-100 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cart-table clearfix">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Quantity & Product</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order_item in object %}
+
+
+                                <tr>
+
+
+                                    <td class="cart_product_img">
+                                        <h5>{{ order_item.usr }}
+                                        <br>{{ order_item.street_address  }}
+                                            <br>{{ order_item.apartment_address  }}
+                                            <br>{{ order_item.country  }}
+                                            <br>{{ order_item.zip  }}
+
+                                        </h5>
+                                    </td>
+
+                                    <td class="price">
+                                        {% for order_items in objects %}
+
+                                            {% if order_items.item.usr == request.user %}
+                                                {% if order_items.usr == order_item.usr %}
+                                                    {% if order_item.ordered == True %}
+                                                <span>{{ order_items }} - Order Confirmed </span><br>
+                                                    {% else %}
+                                                    <span>{{ order_items }} - Order Not Confirmed </span>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}<br>
+                                        {% endfor %}
+                                    </td>
+
+
+
+                                </tr>
+
+                                {% empty %}
+                            <tr>
+                                <td colspan='5'>You Have no orders</td>
+
+                            </tr>
+
+                                 {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+
+                <!-- Cart Totals -->
+
+            </div>
+
+        </div>
+    </div>
+    <!-- ##### Cart Area End ##### -->
+
+	{% endblock %}

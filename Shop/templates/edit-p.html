@@ -1,0 +1,96 @@
+
+{% extends 'sbase.html' %}
+{% load static %}
+{% block body %}
+
+    <!--main-->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>PRODUCT DETAILS</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Product Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Single Product Details Area Start ##### -->
+    <section class="single_product_details_area mb-50">
+        <div class="produts-details--content mb-50">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-12 col-md-6 col-lg-5">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="product-img" href="{{ detail.Product_Image.url }}" title="Product Image">
+                                        <img class="d-block w-100" src="{{ detail.Product_Image.url }}" alt="1">
+                                    </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="product-img" href="{{ detail.Product_Image.url }}" title="Product Image">
+                                        <img class="d-block w-100" src="{{ detail.Product_Image.url }}" alt="1">
+                                    </a>
+                                    </div>
+
+                                </div>
+                                <ol class="carousel-indicators">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/bg-img/49.jpg);">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({{ detail.Product_Image.url }});">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({{ detail.Product_Image.url }});">
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="single_product_desc">
+                            <h4 class="title">{{ detail.Product_name }}</h4>
+                            <h4 class="price">Rs. {{ detail.Price }}</h4>
+                            <div class="short_overview">
+                                <p>{{ detail.Product_Dis }}</p>
+                            </div>
+
+                            <div class="cart--area d-flex flex-wrap align-items-center">
+                                <!-- Add to Cart Form -->
+
+
+                            </div>
+
+                            <div class="products--meta">
+
+                                <p><span>Category:</span> <span>{{ detail.Product_Type }}</span></p>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+	{% endblock %}

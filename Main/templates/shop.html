@@ -1,0 +1,81 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <!--main-->
+
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static './img/bg-img/24.jpg' %});">
+            <h2>Shop</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Shop Area Start ##### -->
+    <section class="shop-page section-padding-0-100">
+        <div class="container">
+
+
+
+                <!-- All Products Area -->
+                <div class="col-12 col-md-8 col-lg-12">
+                    <div class="shop-products-area">
+                        <div class="row">
+
+                            {% for p in product_data %}
+                            <!-- Single Product Area -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-area mb-50">
+                                    <!-- Product Image -->
+                                    <div class="img">
+                                        <a href="{% url 'PDetail' p.id %}">
+                                        <img src="{{ p.Product_Image.url }}" alt=""></a>
+                                        <!-- Product Tag -->
+                                        <div class="product-tag">
+
+                                        </div>
+                                        <div class="product-meta d-flex">
+                                            <a href="{% url 'add-to-cart' p.id %}" class="btn green-btn w-5 add-to-cart-btn">Add to cart</a>
+
+                                        </div>
+                                    </div>
+                                    <!-- Product Info -->
+                                    <div class="product-info mt-15 text-center">
+                                        <a href="shop-details.html">
+                                            <p>{{ p.Product_name }}</p>
+                                        </a>
+                                        <h6>Rs. {{ p.Price }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Shop Area End ##### -->
+
+	{% endblock %}
