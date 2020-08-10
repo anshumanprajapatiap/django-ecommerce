@@ -15,7 +15,7 @@ class UserDetail(models.Model):
 
 
 class OrderItem(models.Model):
-    usr = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    usr = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)

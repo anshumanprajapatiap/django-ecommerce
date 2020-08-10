@@ -164,11 +164,12 @@ def Checkout(request):
         if request.method == 'POST':
             dd = request.POST
             s = dd['sa']
-            a = '402'
+            a = dd['apart']
             c = dd['cunt']
             z = dd['zip']
 
             adata = Address.objects.filter(usr=request.user)
+            print(adata)
             if adata:
                 Address.objects.update(usr=request.user, street_address=s, apartment_address=a, country=c, zip=z)
             else:

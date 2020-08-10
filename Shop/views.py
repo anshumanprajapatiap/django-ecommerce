@@ -3,6 +3,8 @@ from .models import *
 from Main.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 # Create your views here.
 def Shop(request):
     customer_data = UserDetail.objects.all()
@@ -108,10 +110,11 @@ def Product_Edit(request,pid):
 
 def Order_Dasboard(request):
     try:
-        order = Order.objects.all()
-        orderitems = OrderItem.objects.all()
-        print(orderitems)
-        d = {'object': order, 'objects': orderitems}
+        order = OrderItem.objects.all()
+        print(order)
+        orderd = Address.objects.all()
+        print(orderd)
+        d = {'object': order, 'orderd': orderd}
         return render(request, 'order_dasboard.html', d)
     except ObjectDoesNotExist:
         messages.warning(request, "You do not have an active order")

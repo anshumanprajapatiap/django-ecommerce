@@ -34,46 +34,44 @@
                             <thead>
                                 <tr>
                                     <th>Address</th>
-                                    <th>Quantity & Product</th>
+                                    <th>Quantity</th>
+                                    <th>Product</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for order_item in object %}
+                                {% if order_item.item.usr == request.user %}
 
 
                                 <tr>
-
-
                                     <td class="cart_product_img">
-                                        <h5>{{ order_item.usr }}
-                                        <br>{{ order_item.street_address  }}
-                                            <br>{{ order_item.apartment_address  }}
-                                            <br>{{ order_item.country  }}
-                                            <br>{{ order_item.zip  }}
+                                        <h5>{{ order_item.usr }}<br>
+                                            {% for ad in orderd %}
+                                            {% if ad.usr == order_item.usr %}
+                                            {{ ad.apartment_address }},
+                                            {{ ad.street_address }},<br>
+                                            {{ ad.country }},
+                                            {{ ad.zip }}<br>
+                                            {% endif %}
+                                            {% endfor %}
+                                        <br>
 
                                         </h5>
                                     </td>
+                                       <td class="quantity">  <h5>
+                                    {{ order_item.quantity }}</h5>
+                                     </td>
+                                    <td class="cart_product_img">
 
-                                    <td class="price">
-                                        {% for order_items in objects %}
+                                        <h5>{{ order_item.item.Product_name }}
 
-                                            {% if order_items.item.usr == request.user %}
-                                                {% if order_items.usr == order_item.usr %}
-                                                    {% if order_item.ordered == True %}
-                                                <span>{{ order_items }} - Order Confirmed </span><br>
-                                                    {% else %}
-                                                    <span>{{ order_items }} - Order Not Confirmed </span>
-                                                    {% endif %}
-                                                {% endif %}
-                                            {% endif %}<br>
-                                        {% endfor %}
+
+
+                                        </h5>
                                     </td>
-
-
-
                                 </tr>
-
+                                   {% endif %}
                                 {% empty %}
                             <tr>
                                 <td colspan='5'>You Have no orders</td>
